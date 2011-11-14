@@ -7,8 +7,8 @@ env.shell = '/bin/bash -c'
 # Download and import a platform using Drush Make
 def build_platform(site, profile, webserver, dbserver, makefile, build, platform = 'platform'):
   print "===> Building the platform..."
-  run("drush make %s /var/aegir/platforms/%s" % (makefile, build))
-  run("drush --root='/var/aegir/platforms/%s' provision-save '@%s_%s' --context_type='platform'" % (build, platform, build))
+  run("drush make %s /var/aegir/platforms/%s_%s" % (makefile, platform, build))
+  run("drush --root='/var/aegir/platforms/%s_%s' provision-save '@%s_%s' --context_type='platform'" % (platform, build, platform, build))
   run("drush @hostmaster hosting-import '@%s_%s'" % (platform, build))
   run("drush @hostmaster hosting-dispatch")
 
